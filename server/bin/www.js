@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 
- import app from "../app";
- import Debug from "debug";
- import http from "http";
+import app from "@s/app";
+import Debug from "debug";
+import http from "http";
  
  // Creando instancia del debugger
  const debug = Debug("proyeto-final-p2:server");
