@@ -1,4 +1,4 @@
-//incorporando estilos a mi bundle
+// incorporando estilos a mi bundle
 import './styles/style.css'
 import './styles/mystyle.css'
 
@@ -10,7 +10,7 @@ let show = (m = "😎") => {
 };
 show();
 
-//Promises
+// Promises
 function resolveAfer2Seconds() {
     return new Promise(resolve => {
         setTimeout(()=>{
@@ -22,7 +22,7 @@ function resolveAfer2Seconds() {
 async function asyncCall(){
     console.log("Calling async function!!!");
     const result = await resolveAfer2Seconds();
-    console.log(result); //imprime "function resolve" en la consola
+    console.log(result); // imprime "function resolve" en la consola
 } 
 
 asyncCall();
