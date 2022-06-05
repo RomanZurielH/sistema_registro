@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 // Preambulo
 // Ayuda a manejar errores http
 import createError from 'http-errors';
