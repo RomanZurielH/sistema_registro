@@ -4,39 +4,22 @@
  * Module dependencies.
  */
 
-import app from '@s/app';
+// var debug = require('debug')('projnotes:server');
 import Debug from 'debug';
 import http from 'http';
-
+// var app = require('../app');
+import app from '@s/app';
 // Importando nuestro logger
 import winston from '../config/winston';
 
 // Creando instancia del debugger
-const debug = Debug('projnotes-2022a:server');
-
-/**
- * Get port from environment and store in Express.
- */
-const port = normalizePort(process.env.PORT || '3000');
-// app es una instnacia de ExpressJs[ ] [ NODE ]
-app.set('port', port);
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app); // (req, res, next, err)=> {}
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port); // Pone al server a escuchar
-// Se registran eventos
-server.on('error', onError); // En caso de error
-server.on('listening', onListening); // Cuando esta escuchando
-/**
+const debug = Debug('projnotes:server');
+/*
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val) {
   const port = parseInt(val, 10);
-  if (isNaN(port)) {
+  if (Number.isNaN(port)) {
     // named pipe
     return val;
   }
@@ -46,6 +29,13 @@ function normalizePort(val) {
   }
   return false;
 }
+/**
+ * Get port from environment and store in Express.
+ */
+/** process.env.PORT Forma de acceder a la variable de entorno */
+const port = normalizePort(process.env.PORT || '3000');
+// app es una instancia de ExpressJs[ ] [ NODE ]
+app.set('port', port);
 /**
  * Event listener for HTTP server "error" event.
  */
@@ -61,7 +51,7 @@ function onError(error) {
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      winston.error(`Port: ${bind} is already in use`);
+      winston.error(`Port: ${bind}  is already in use`);
       process.exit(1);
       break;
     default:
@@ -69,11 +59,23 @@ function onError(error) {
   }
 }
 /**
+ * Create HTTP server.
+ */
+const server = http.createServer(app); // (req, res, next, err) => {}
+/**
  * Event listener for HTTP server "listening" event.
  */
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-  debug(`Listening on ${bind}`);
-  winston.info(`Servidor escuchando 🤖🦻...en ${app.get('port')}`);
+  debug(`Listening on  ${bind}`);
+  winston.info(`Servidor escuchando 😜 ... en ${app.get('port')}`);
 }
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port); // Pone al server a escuchar
+// Se registran eventos
+server.on('error', onError);
+server.on('listening', onListening);
