@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 
-// Preámbulo
+// Preambulo
 // Ayuda a manejar errores http
 import createError from 'http-errors';
 // Ayuda a crear servidores web
 import express from 'express';
 // Nucleo de node, ayuda al manejo de las rutas
 import path from 'path';
-// Ayuda al manejo de cookies
+// Ayuda al manejo de las cookies
 import cookieParser from 'cookie-parser';
 // Maneja el log de peticiones http
 import morgan from 'morgan';
@@ -18,11 +18,10 @@ import WebpackDevMiddleware from 'webpack-dev-middleware';
 import WebpackHotMiddleware from 'webpack-hot-middleware';
 // Importando configurador de plantillas
 import templateEngineConfigurator from './config/templateEngine';
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
-import aboutRouter from './routes/about';
+// Importando enrutador principal
+import router from './routes/router';
 
-// Importando nuestro logger
+// importando nuestro logger
 import winston from './config/winston';
 
 // Importando modulos de webpack
@@ -31,13 +30,14 @@ import winston from './config/winston';
 // Permite la actualización dinamica de la página
 // Configuración
 import webpackConfig from '../webpack.dev.config';
-// Aqui se crea la instancia de express
-// (req, res, next) => {... }
 
+// Aqui se crea la instancia de express
+// (req, res, next, err) => {... }
 const app = express();
 
 // Recuperar el modo de ejecución
 const nodeEnv = process.env.NODE_ENV || 'development';
+
 // Decidiendo si embebemos el webpack middleware
 if (nodeEnv === 'development') {
   // Embebiendo webpack a mi aplicación
@@ -46,6 +46,7 @@ if (nodeEnv === 'development') {
   // Establiendo el modo de webpack en desarrollo
   // en el configurador
   webpackConfig.mode = 'development';
+
   // Congigurando la ruta del HMR (Hot Module Replacemnet)
   // reload=true : Habilita la recarga automatica cuando un archivo Js camboa
   // timeout=1000 : Tiempo de refresco de pagina
@@ -71,12 +72,11 @@ if (nodeEnv === 'development') {
 } else {
   console.log(`✍ Ejecutando en modo producción ⚙⚙`);
 }
-
-// Configuración del motor de plantillas (template Engine)
+// Configuración del motor de plantillas ( template Engine)
 // view engine setup
 templateEngineConfigurator(app);
 
-// Todos los middlewares globales
+// Todos los middlerwares globales
 // van primero que cualquier otro middleware de la app
 app.use(morgan('dev', { stream: winston.stream }));
 app.use(express.json());
@@ -84,18 +84,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Middleware de archivos estaticos
 app.use(express.static(path.join(__dirname, '..', 'public')));
-// Registrando las rutas en la APP
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/about', aboutRouter);
+
+// Registrando las rutas en la App
+router.addRoutes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   // Registrando el error 404 en el log
-  // winston.error(
-  //   `404 - Not Found: ${req.method} ${req.originalUrl} : IP ${req.ip}`
-  // );
-
+  winston.error(
+    `404 - Not Found: ${req.method} ${req.originalUrl}: IP ${req.ip}`
+  );
   next(createError(404));
 });
 
@@ -107,8 +105,8 @@ app.use((err, req, res) => {
 
   // Registramos el error en winston
   winston.error(
-    `${err.status || 500} : ${err.message} 
-    : ${req.method} ${req.originalUrl} : IP ${req.ip}`
+    `${err.status || 500}: ${err.message} : ${req.method}
+   ${req.originalUrl}: IP ${req.ip}`
   );
 
   // render the error page
@@ -117,5 +115,5 @@ app.use((err, req, res) => {
 });
 
 // Exportando instancia de app
-// usando js moderno
+// usando Js moderno
 export default app;
