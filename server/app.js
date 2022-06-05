@@ -86,8 +86,14 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
+  // Registrando el error 404 en el log
+  // winston.error(
+  //   `404 - Not Found: ${req.method} ${req.originalUrl} : IP ${req.ip}`
+  // );
+
   next(createError(404));
 });
 
@@ -96,6 +102,13 @@ app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // Registramos el error en winston
+  winston.error(
+    `${err.status || 500} : ${err.message} 
+    : ${req.method} ${req.originalUrl} : IP ${req.ip}`
+  );
+
   // render the error page
   res.status(err.status || 500);
   res.render('error');

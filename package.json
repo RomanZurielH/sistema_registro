@@ -10,7 +10,8 @@
     "clean:client": "rimraf public/javascripts/bundle.js && rimraf public/stylesheets/styles.css",
     "client:server": "SET NODE_ENV=development && webpack serve --config ./webpack.dev.config.js --mode development",
     "build:client": "npm run clean:client && webpack --config ./webpack.config.js --mode production",
-    "lint-server": "eslint ./server"
+    "lint-server": "eslint ./server",
+    "clearlogs": "rm -rf ./server/logs/*.log"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
