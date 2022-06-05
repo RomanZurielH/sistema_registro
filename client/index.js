@@ -1,1 +1,24 @@
 console.log("🚀 Webpack Working!!!");
+
+// Default parameters ES6/2015
+let show = (m = "😎") => {
+    console.log(m);
+  };
+  show();
+  
+  // Promises ES06
+  function resolveAfter2Seconds() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("function resolve");
+      }, 10000);
+    });
+  }
+  
+  async function asyncCall() {
+    console.log("Calling async function!!!");
+    const result = await resolveAfter2Seconds();
+    console.log(result); // Imprime "function resolve" en la consola
+  }
+  
+  asyncCall();
