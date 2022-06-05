@@ -2,7 +2,7 @@
 // dependencia del core de Node
 const path = require("path");
 // Plugins para Webpack
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   // 1. Especificar el archivo de entrada
@@ -12,9 +12,9 @@ module.exports = {
     // 2.1 Ruta ansoluta de la salida
     path: path.resolve(__dirname, "public"),
     // 2.2 Nombre del archivo de salida
-    filename: path.join('javascripts', 'bundle.js'),
+    filename: path.join("javascripts", "bundle.js"),
     // 2.3 path publico
-    publicPath: '/'
+    publicPath: "/",
   },
   // 3. Modulos
   module: {
@@ -26,31 +26,34 @@ module.exports = {
         use: [
           // 3.1.1 Primer stage
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
               presets: [
                 [
-                  '@babel/preset-env', {
+                  "@babel/preset-env",
+                  {
                     modules: false,
-                    useBuiltIns: 'usage',
-                    targets: '> 0.25%, not dead',
-                    corejs: 3
-                  }
-                ]
-              ]
-            }
-          }
-        ]
+                    useBuiltIns: "usage",
+                    targets: "> 0.25%, not dead",
+                    corejs: 3,
+                  },
+                ],
+              ],
+            },
+          },
+        ],
       },
       // 3.2 Reglas para Css
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader]
-      }
-    ]
+        use: [MiniCssExtractPlugin.loader],
+      },
+    ],
   },
   // 4. Plugins
-  plugins: [new MiniCssExtractPlugin({
-    filename: path.join('stylesheets','styles.css')
-  })]
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: path.join("stylesheets", "styles.css"),
+    }),
+  ],
 };

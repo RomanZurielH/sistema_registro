@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server/bin/www.js",
+    "start": "SET NODE_ENV=production /dist/bin/www.js",
     "dev": "babel-watch ./server/bin/www",
+    "build:s": "npm run clean:server && babel ./server --out-dir dist --copy-files",
+    "clean:server": "rimraf dist",
+    "clean:client": "rimraf public/javascripts/bundle.js && rimraf public/stylesheets/style.css",
     "client:server": "SET NODE_ENV=development && webpack serve --config ./webpack.dev.config.js --mode development",
-    "clean": "rm -rf dist",
-    "clean:cp" : "rimraf dist",
-    "build:s": "npm run clean:cp && babel ./server --out-dir dist --copy-files" 
+    "build:client": "npm run clean:client && webpack --config ./webpack.config.js --mode production"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
