@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "SET NODE_ENV=production /dist/bin/www.js",
-    "dev": "babel-watch ./server/bin/www",
+    "dev": "babel-watch ./server/bin/www.js",
     "build:s": "npm run clean:server && babel ./server --out-dir dist --copy-files",
     "clean:server": "rimraf dist",
     "clean:client": "rimraf public/javascripts/bundle.js && rimraf public/stylesheets/style.css",

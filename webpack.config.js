@@ -34,7 +34,9 @@ module.exports = {
                   {
                     modules: false,
                     useBuiltIns: "usage",
-                    targets: "> 0.25%, not dead",
+                    targets: {
+                      chrome: "80",
+                    },
                     corejs: 3,
                   },
                 ],
