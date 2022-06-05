@@ -4,18 +4,18 @@ import './styles/mystyle.css'
 
 console.log("🚀 front-end working!");
 
-// default parameters
+// default parameters ES6/2015
 let show = (m = "😎") => {
     console.log(m);
 };
 show();
 
-// Promises
+// Promises ES06
 function resolveAfer2Seconds() {
     return new Promise(resolve => {
         setTimeout(()=>{
             resolve("function resolve")
-        }, 200);
+        }, 1000);
         }); 
 }
 
