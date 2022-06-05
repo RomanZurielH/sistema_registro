@@ -4,20 +4,20 @@
 import './styles/style.css';
 import './styles/mystyle.css';
 
-console.log('🚀 front-end working!');
+console.log('🚀front-end working!');
 
-// default parameters ES6/2015
+// default parameters
 const show = (m = '😎') => {
   console.log(m);
 };
 show();
 
-// Promises ES06
+// Promises
 function resolveAfer2Seconds() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve('function resolve');
-    }, 10000);
+    }, 200);
   });
 }
 
