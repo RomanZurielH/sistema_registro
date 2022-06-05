@@ -1,13 +1,13 @@
 {
-  "name": "proyecto-final-p2",
+  "name": "projnotes",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "SET NODE_ENV=production /dist/bin/www.js",
-    "dev": "babel-watch ./server/bin/www.js",
+    "start": "SET NODE_ENV=production && node ./dist/bin/www",
+    "dev": "babel-watch ./server/bin/www",
     "build:s": "npm run clean:server && babel ./server --out-dir dist --copy-files",
     "clean:server": "rimraf dist",
-    "clean:client": "rimraf public/javascripts/bundle.js && rimraf public/stylesheets/style.css",
+    "clean:client": "rimraf public/javascripts/bundle.js && rimraf public/stylesheets/styles.css",
     "client:server": "SET NODE_ENV=development && webpack serve --config ./webpack.dev.config.js --mode development",
     "build:client": "npm run clean:client && webpack --config ./webpack.config.js --mode production"
   },

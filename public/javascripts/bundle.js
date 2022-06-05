@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("🚀 Webpack Working!!!"),((o="😎")=>{console.log(o)})(),async function(){console.log("Calling async function!!!");const o=await new Promise((o=>{setTimeout((()=>{o("function resolve")}),1e4)}));console.log(o)}()})();
+(()=>{"use strict";console.log("🚀 Front-End Working!!!"),((o="😛")=>{console.log(o)})(),async function(){console.log("Calling async function!!!");const o=await new Promise((o=>{setTimeout((()=>{o("function resolve")}),200)}));console.log(o)}()})();
