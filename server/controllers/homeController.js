@@ -31,6 +31,9 @@ const about = (req, res) => {
     name: 'Zuriel Román Hernández',
     email: 'romanzuriel@gmail.com',
     url: 'https://github.com/RomanZurielH/sistema_registro/tree/dev',
+    description:
+      'Sistema que permite registrar ideas para proyectos de residencias',
+    version: '0.0.alpha',
   });
 };
 
