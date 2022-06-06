@@ -1,11 +1,15 @@
-// Importando el enrutador de home
+// Importando el enrutador de Home
 import homeRouter from './homeRouter';
+// Importando el enrutador de Project
+import projectRouter from './projectRouter';
 
-// Funcion que agrega todos los enrutadores a aplicacion de express
-// a la aplicacion de express
+// Funcion que agrega todos los enrutadores
+// a la aplicación de express
 const addRoutes = (app) => {
-  /* Agregando enrutador a home */
+  /* Agregando enrutador a Home */
   app.use('/', homeRouter);
+  /* Agregando al enrutador Project */
+  app.use('/projects', projectRouter);
 };
 
 export default {
