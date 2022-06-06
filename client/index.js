@@ -17,7 +17,7 @@ function resolveAfer2Seconds() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve('function resolve');
-    }, 200);
+    }, 1000);
   });
 }
 
