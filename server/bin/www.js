@@ -4,13 +4,15 @@
  * Module dependencies.
  */
 
-// var debug = require('debug')('projnotes:server');
+// var debug = require('debug')('server');
 import Debug from 'debug';
 import http from 'http';
 // var app = require('../app');
 import app from '@s/app';
 // Importando nuestro logger
 import winston from '../config/winston';
+// IMportando el objeto de las llaves de configuracion
+import configKeys from '../config/configKeys';
 
 // Creando instancia del debugger
 const debug = Debug('projnotes:server');
@@ -33,7 +35,7 @@ function normalizePort(val) {
  * Get port from environment and store in Express.
  */
 /** process.env.PORT Forma de acceder a la variable de entorno */
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(configKeys.port || '5000');
 // app es una instancia de ExpressJs[ ] [ NODE ]
 app.set('port', port);
 /**
