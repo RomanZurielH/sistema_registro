@@ -10,7 +10,7 @@ const index = (req, res) => {
 // Agrega ideas de proyectos
 // GET /projects/add
 const add = (req, res) => {
-  res.send('Agregando ideas de proyectos 🚧');
+  res.render('projects/addProjectView', {});
   // TODO: Agregar codigo para agregar proyectos
 };
 
