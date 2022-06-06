@@ -1,1 +1,4 @@
-/* Estilos de la App */ 
+/* Estilos de la App */
+.sidenav li{
+    clear: both;
+  }
