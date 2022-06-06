@@ -14,8 +14,20 @@ const add = (req, res) => {
   // TODO: Agregar codigo para agregar proyectos
 };
 
+// Procesa el formulario que Agrega ideas de proyectos
+// POST /projects/add
+const addPost = (req, res) => {
+  // Desestructurando la informacion
+  // del formulario
+  const { name, description } = req.body;
+  // Regresar un objeto con los datos
+  // obtenidos del formulario
+  res.status(200).json({ name, description });
+};
+
 // Exportando el controlador
 export default {
   index,
   add,
+  addPost,
 };
