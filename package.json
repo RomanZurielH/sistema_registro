@@ -1,6 +1,6 @@
 {
-  "name": "projnotes",
-  "version": "0.0.0",
+  "name": "proyecto-final-p2",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "SET NODE_ENV=producton && node ./dist/bin/www",
