@@ -1,22 +1,8 @@
 <!-- Se crea una estructura Dropdown -->
 <ul id="dropdownMenu" class="dropdown-content">
-  <li>
-    <a href="#">
-      <i class="large material-icons" style="margin: 2px;">
-        list
-      </i>
-      Lista de Proyectos
-    </a>
-  </li>
-  <li class="divider"></li>
-  <li>
-    <a href="#">
-      <i class="large material-icons" style="margin: 2px;">
-        add_box
-      </i>
-      Crear Proyecto
-    </a>
-  </li>
+  <!-- Operaciones -->
+  {{> _operations}}
+  <!-- fin Operaciones -->
 </ul>
 <nav class="black">
   <div class="container">
@@ -57,23 +43,7 @@
           </a>
         </li>
         <!-- Operaciones -->
-        <li>
-          <a href="#">
-            <i class="large material-icons" style="margin: 2px;">
-              list
-            </i>
-            Listar Proyectos
-          </a>
-        </li>
-        <li class="divider"></li>
-        <li>
-          <a href="#">
-            <i class="large material-icons" style="margin: 2px;">
-              add_box
-            </i>
-            Crear Proyecto
-          </a>
-        </li>
+         {{> _operations}}
         <!-- Divisor -->
         <li class="divider"></li>
         <li>
