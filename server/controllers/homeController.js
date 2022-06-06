@@ -25,7 +25,17 @@ const index = (req, res) => {
   res.render('index', viewModel);
 };
 
+// URL: Get /about
+const about = (req, res) => {
+  res.render('home/aboutView', {
+    name: 'Zuriel Román Hernández',
+    email: 'romanzuriel@gmail.com',
+    url: 'https://github.com/RomanZurielH/sistema_registro/tree/dev',
+  });
+};
+
 export default {
-  // Action Method
+  // Action Methods
   index,
+  about,
 };
