@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 
-// Preambulo
+// Preámbulo
 // Ayuda a manejar errores http
 import createError from 'http-errors';
 // Ayuda a crear servidores web
 import express from 'express';
-// Nucleo de node, ayuda al manejo de las rutas
+// Núcleo de node, ayuda al manejo de las rutas
 import path from 'path';
 // Ayuda al manejo de las cookies
 import cookieParser from 'cookie-parser';
@@ -24,18 +24,19 @@ import router from './routes/router';
 // importando nuestro logger
 import winston from './config/winston';
 
-// Importando modulos de webpack
-// Nucleo de webpack
+// Importando módulos de webpack
+// Núcleo de webpack
 // Permite incrustar webpack en express
-// Permite la actualización dinamica de la página
+// Permite la actualización dinámica de la página
 // Configuración
 import webpackConfig from '../webpack.dev.config';
-// Importando las variables de configuracion
+
+// Importando las variables de configuración
 import configKeys from './config/configKeys';
 // Importando clase conectora a la base de datos
 import MongooseODM from './config/odm';
 
-// Aqui se crea la instancia de express
+// Aquí se crea la instancia de express
 // (req, res, next, err) => {... }
 const app = express();
 
@@ -45,15 +46,32 @@ const nodeEnv = process.env.NODE_ENV || 'development';
 // Decidiendo si embebemos el webpack middleware
 if (nodeEnv === 'development') {
   // Embebiendo webpack a mi aplicación
-  console.log(`✍ Ejecutando en modo desarrollo 🤱👶`);
+  console.log(`✍ Ejecutando en modo desarrollo 🤔`);
 
-  // Establiendo el modo de webpack en desarrollo
+  // Conexión a la base de datos
+  // Creando una instancia a la conexion de la DB
+  const mongooseODM = new MongooseODM(configKeys.databaseUrl);
+  // Crear una IIFE para crear un ambito asincrono
+  // que me permita usar async await
+  (async () => {
+    // Ejecutamos el método de conexión
+    const connectionResult = await mongooseODM.connect();
+    // Checamos si hay errores
+    if (connectionResult) {
+      // Si conectó correctamente a la base de datos
+      winston.info('✅ Conexion a la BD exitosa 🤘');
+    } else {
+      winston.error('😱 No se conectó a la base de datos');
+    }
+  })();
+
+  // Estableciendo el modo de webpack en desarrollo
   // en el configurador
   webpackConfig.mode = 'development';
 
   // Congigurando la ruta del HMR (Hot Module Replacemnet)
-  // reload=true : Habilita la recarga automatica cuando un archivo Js camboa
-  // timeout=1000 : Tiempo de refresco de pagina
+  // reload=true : Habilita la recarga automática cuando un archivo Js cambia
+  // timeout=1000 : Tiempo de refresco de la página
   webpackConfig.entry = [
     'webpack-hot-middleware/client?reload=true&timeout=1000',
     webpackConfig.entry,
@@ -74,26 +92,8 @@ if (nodeEnv === 'development') {
   // Habilitando el Middleware del Webpack HMR
   app.use(WebpackHotMiddleware(bundler));
 } else {
-  console.log(`✍ Ejecutando en modo producción ⚙⚙`);
+  console.log(`✍ Ejecutando en modo producción 🐱‍👤`);
 }
-// Conexion a la base de datos
-// Creando una instancia a la conexion de la DB
-const mongooseODM = new MongooseODM(configKeys.databaseUrl);
-// Ejecutar la conexion a la Bd
-// Crear una IIFE para crear un ambito asincrono
-// que me permita usar async await
-(async () => {
-  // Ejecutamos le metodo de conexion
-  const connectionResult = await mongooseODM.connect();
-  // Checamos si hay error
-  if (connectionResult) {
-    // Si conecto correctamente a la base de datos
-    winston.info('✅ Conexion a la BD exitosa 🤘');
-  } else {
-    winston.error('😱 No se conecto a la base de datos');
-  }
-})();
-
 // Configuración del motor de plantillas ( template Engine)
 // view engine setup
 templateEngineConfigurator(app);
@@ -104,7 +104,7 @@ app.use(morgan('dev', { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// Middleware de archivos estaticos
+// Middleware de archivos estáticos
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Registrando las rutas en la App
@@ -123,8 +123,8 @@ app.use((req, res, next) => {
 app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
   // Registramos el error en winston
   winston.error(
     `${err.status || 500}: ${err.message} : ${req.method}

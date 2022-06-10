@@ -19,20 +19,40 @@ const add = (req, res) => {
 // Procesa el formulario que Agrega ideas de proyectos
 // POST /projects/add
 const addPost = (req, res) => {
-  const { errorData: error } = req;
-  if (error) {
+  const { errorData } = req;
+  // crear view models para éste action method
+  let project = {};
+  let errorModel = {};
+  if (errorData) {
     log.info('Se retorna objeto de error de validacion');
-    // La validacion fallo
-    res.status(200).json(error);
+    // Rescatando el objeto válidado
+    project = errorData.value;
+    // Usamos reduce para generar un objeto
+    // de errores a paritr de inner
+    errorModel = errorData.inner.reduce((prev, curr) => {
+      // Creamos una variable temporal para evitar
+      // el error "no-param-reasssign" el cual me
+      // exhorta a evitar reasignar los valores de
+      // los argumentos de una función
+      const newVal = prev;
+      newVal[`${curr.path}Error`] = curr.message;
+      return newVal;
+    }, {});
+    // La validacion falló
+    // res.status(200).json(errorData);
   } else {
-    // Desestructurando la informacion
-    // del formulario
-    const { validData: project } = req;
-    log.info('Se retorna objeto Projecto valido');
+    log.info('Se retorna objeto proyecto válido');
+    // Desestructurando la información
+    // del formulario del objeto válido
+    const { validData } = req;
     // Regresar un objeto con los datos
     // obtenidos del formulario
-    res.status(200).json(project);
+    // res.status(200).json(validData);
+    project = validData;
   }
+  // Respondemos con los viewModels generados
+  res.render('projects/addProjectView', { project, errorModel });
+  // res.status(200).json({ project, errorModel });
 };
 
 // Exportando el controlador
