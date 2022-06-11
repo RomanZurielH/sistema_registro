@@ -18,7 +18,7 @@ const index = (req, res) => {
     emojieDataset[Math.floor(Math.random() * emojieDataset.length)];
   // View Models
   const viewModel = {
-    title: 'Registro de proyectos de residencias',
+    title: 'Registro de proyectos de residencias profesionales',
     author: 'Zuriel Román Hernández',
     emojie,
   };
@@ -29,11 +29,11 @@ const index = (req, res) => {
 const about = (req, res) => {
   res.render('home/aboutView', {
     name: 'Zuriel Román Hernández',
-    email: 'romanzuriel@gmail.com',
-    url: 'https://github.com/RomanZurielH/sistema_registro/tree/dev',
+    email: 'ci_gamadero.tecnm.mx',
+    url: 'https://gamadero.tecnm.mx',
     description:
-      'Sistema que permite registrar ideas para proyectos de residencias',
-    version: '0.0.alpha',
+      'Sistema que permite registrar proyectos de residencias profesionales',
+    version: '0.0.1',
   });
 };
 

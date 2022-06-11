@@ -15,7 +15,7 @@ import winston from '../config/winston';
 import configKeys from '../config/configKeys';
 
 // Creando instancia del debugger
-const debug = Debug('projnotes:server');
+const debug = Debug('registro_residencias:server');
 /*
  * Normalize a port into a number, string, or false.
  */

@@ -10,7 +10,7 @@ const index = async (req, res) => {
   // que me de todos lo proyectos que tiene
   // db.projects.find()
   try {
-    log.info('Mostrando Listan de proyectos ... ⌛');
+    log.info('Mostrando Lista de proyectos ... ⌛');
     const projectsDocs = await ProjectModel.find();
     log.info('Mostrando lista de Proyectos con éxito ... 🎉');
     res.json(projectsDocs);
