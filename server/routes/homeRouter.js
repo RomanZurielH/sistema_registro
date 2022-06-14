@@ -6,8 +6,17 @@ import homeController from '../controllers/homeController';
 // Creo una instancia del Router Express
 const router = new Router();
 
-// Get "/"
+// Get "/index"
 router.get(['/', '/home'], homeController.index);
+
+// Get "/admin"
+router.get(['/', '/admin'], homeController.admin);
+
+// Get "/users"
+router.get(['/', '/users'], homeController.users);
+
+// Get "/residentes"
+router.get(['/', '/residentes'], homeController.residentes);
 
 // Get "/about"
 router.get('/about', homeController.about);

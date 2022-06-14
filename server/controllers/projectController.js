@@ -46,7 +46,7 @@ const addPost = async (req, res) => {
     errorModel = errorData.inner.reduce((prev, curr) => {
       // Creamos una vaiabre temporal para evitar
       // el error "no-param-reassign" el cual me
-      // exorta a evitar reasignar los valores de
+      // exhorta a evitar reasignar los valores de
       // los argumentos una función
       const newVal = prev;
       newVal[`${curr.path}Error`] = curr.message;

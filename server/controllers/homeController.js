@@ -25,6 +25,42 @@ const index = (req, res) => {
   res.render('home/indexView', viewModel);
 };
 
+// URL: Get /admin
+const admin = (req, res) => {
+  res.render('home/adminView', {
+    name: 'Zuriel Román Hernández',
+    email: 'ci_gamadero.tecnm.mx',
+    url: 'https://gamadero.tecnm.mx',
+    description:
+      'Sistema que permite registrar proyectos de residencias profesionales',
+    version: '0.0.1',
+  });
+};
+
+// URL: Get /users
+const users = (req, res) => {
+  res.render('home/usersView', {
+    name: 'Zuriel Román Hernández',
+    email: 'ci_gamadero.tecnm.mx',
+    url: 'https://gamadero.tecnm.mx',
+    description:
+      'Sistema que permite registrar proyectos de residencias profesionales',
+    version: '0.0.1',
+  });
+};
+
+// URL: Get /residentes
+const residentes = (req, res) => {
+  res.render('home/resView', {
+    name: 'Zuriel Román Hernández',
+    email: 'ci_gamadero.tecnm.mx',
+    url: 'https://gamadero.tecnm.mx',
+    description:
+      'Sistema que permite registrar proyectos de residencias profesionales',
+    version: '0.0.1',
+  });
+};
+
 // URL: Get /about
 const about = (req, res) => {
   res.render('home/aboutView', {
@@ -40,5 +76,8 @@ const about = (req, res) => {
 export default {
   // Action Methods
   index,
+  admin,
+  users,
+  residentes,
   about,
 };

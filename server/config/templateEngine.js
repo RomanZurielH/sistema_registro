@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 // Importamos el motor handlebars
 import ExpHbs from 'express-handlebars';
 // Importamos el administrador de rutas

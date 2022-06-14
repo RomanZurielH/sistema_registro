@@ -13,7 +13,7 @@ import projectController from '../controllers/projectController';
 const router = new Router();
 
 /* ------ GET ------ */
-// Listar proyector
+// Lista de proyectos
 // GET /projects | GET /projects/index
 router.get(['/', '/index'], projectController.index);
 
