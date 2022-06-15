@@ -1,5 +1,6 @@
 {
   "name": "proyecto-final-p2",
+<<<<<<< HEAD
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -56,5 +57,19 @@
     "prettier": "^2.5.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
+=======
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "hbs": "^4.2.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+>>>>>>> e90651f6ab6e79f77f1f57ebec2458b5fe441448
   }
 }
