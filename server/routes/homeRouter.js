@@ -15,8 +15,8 @@ router.get(['/', '/admin'], homeController.admin);
 // Get "/users"
 router.get(['/', '/users'], homeController.users);
 
-// Get "/residentes"
-router.get(['/', '/residentes'], homeController.residentes);
+// Get "/proyectos innovadores"
+router.get(['/', '/inno'], homeController.inno);
 
 // Get "/about"
 router.get('/about', homeController.about);

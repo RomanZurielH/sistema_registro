@@ -49,9 +49,9 @@ const users = (req, res) => {
   });
 };
 
-// URL: Get /residentes
-const residentes = (req, res) => {
-  res.render('home/resView', {
+// URL: Get /inno
+const inno = (req, res) => {
+  res.render('home/inoView', {
     name: 'Zuriel Román Hernández',
     email: 'ci_gamadero.tecnm.mx',
     url: 'https://gamadero.tecnm.mx',
@@ -78,6 +78,6 @@ export default {
   index,
   admin,
   users,
-  residentes,
+  inno,
   about,
 };

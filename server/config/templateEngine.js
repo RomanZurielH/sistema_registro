@@ -5,7 +5,7 @@ import ExpHbs from 'express-handlebars';
 // Importamos el administrador de rutas
 import path from 'path';
 
-// Exportando funcion de configuracion
+// Exportando función de configuración
 // app: Es una instancia de express
 export default (app) => {
   // 1 Registro el motor de plantillas
